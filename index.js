@@ -83,6 +83,22 @@ Car.prototype.fill = function (gallons) {
   this.tank += gallons;
 };
 
+Car.prototype.fill = function (gallons) {
+  this.tank += gallons;
+};
+
+Car.prototype.drive = function (distance) {
+  this.odometer += distance;
+  const gallonsNeeded = distance / this.milesPerGallon;
+  this.tank -= gallonsNeeded;
+
+  if (this.tank <= 0) {
+    this.odometer -= this.milesPerGallon * Math.abs(this.tank);
+    this.tank = 0;
+    return `I rank out of gas at ${this.odometer}`;
+  }
+};
+
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
